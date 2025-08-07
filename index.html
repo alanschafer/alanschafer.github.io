@@ -1,10 +1,118 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Alan Schafer</title>
-  </head>
-  <body>
-    <h1>Welcome to My Website</h1>
-    <p>This is my personal GitHub homepage.</p>
-  </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alan Schafer</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #121212;
+      color: #f1f1f1;
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: #1e1e1e;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      color: #bbbbbb;
+    }
+
+    nav {
+      text-align: center;
+      margin: 1rem 0;
+    }
+
+    nav a {
+      margin: 0 1rem;
+      color: #4fc3f7;
+      text-decoration: none;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .content {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 1rem;
+    }
+
+    .project-list {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .project-list li {
+      margin: 1rem 0;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: #777;
+      font-size: 0.9rem;
+    }
+
+    a.button {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.6rem 1.2rem;
+      background-color: #4fc3f7;
+      color: #121212;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    a.button:hover {
+      background-color: #03a9f4;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Alan Schafer</h1>
+    <p>Writer • Developer • Creator</p>
+    <nav>
+      <a href="https://github.com/alanschafer">GitHub</a>
+      <a href="https://alanschafer.github.io/alanschafer/">Project Site</a>
+    </nav>
+  </header>
+
+  <section class="content">
+    <h2>About Me</h2>
+    <p>Hi! I'm Alan. I create things — stories, projects, and experiences. This is my personal GitHub homepage where you can find my latest work and experiments.</p>
+
+    <h2>Featured Projects</h2>
+    <ul class="project-list">
+      <li>
+        <strong><a href="https://github.com/alanschafer/alanschafer">alanschafer (Main Repository)</a></strong><br />
+        A collection of creative works, writing experiments, and more.
+      </li>
+      <!-- Add more projects below -->
+    </ul>
+
+    <a class="button" href="https://github.com/alanschafer">Visit My GitHub</a>
+  </section>
+
+  <footer>
+    © 2025 Alan Schafer. Built with ✨ by hand.
+  </footer>
+
+</body>
 </html>
