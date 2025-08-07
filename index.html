@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Alan Schafer</title>
+  <!-- Quick emoji favicon -->
+  <link rel="icon" href="https://fav.farm/✨" />
   <style>
     body {
       margin: 0;
@@ -13,105 +15,112 @@
       color: #f1f1f1;
       line-height: 1.6;
     }
-
     header {
       background-color: #1e1e1e;
       padding: 2rem;
       text-align: center;
     }
-
+    header img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 2px solid #4fc3f7;
+      margin-bottom: 1rem;
+      object-fit: cover;
+    }
     header h1 {
       font-size: 2.5rem;
-      margin-bottom: 0.5rem;
+      margin: 0.5rem 0;
     }
-
     header p {
       font-size: 1.2rem;
       color: #bbbbbb;
+      margin: 0.5rem 0;
     }
-
     nav {
-      text-align: center;
-      margin: 1rem 0;
+      margin-top: 1rem;
     }
-
     nav a {
       margin: 0 1rem;
       color: #4fc3f7;
       text-decoration: none;
+      font-weight: bold;
     }
-
     nav a:hover {
       text-decoration: underline;
     }
-
     .content {
       max-width: 800px;
       margin: 2rem auto;
       padding: 1rem;
     }
-
     .project-list {
       list-style: none;
       padding-left: 0;
     }
-
     .project-list li {
-      margin: 1rem 0;
+      margin: 1.5rem 0;
     }
-
+    .project-list a {
+      color: #4fc3f7;
+      text-decoration: none;
+    }
+    .project-list a:hover {
+      text-decoration: underline;
+    }
+    .button {
+      display: inline-block;
+      margin-top: 2rem;
+      padding: 0.75rem 1.5rem;
+      background-color: #4fc3f7;
+      color: #121212;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background-color 0.2s ease-in-out;
+    }
+    .button:hover {
+      background-color: #03a9f4;
+    }
     footer {
       text-align: center;
       padding: 2rem;
       color: #777;
       font-size: 0.9rem;
     }
-
-    a.button {
-      display: inline-block;
-      margin-top: 1rem;
-      padding: 0.6rem 1.2rem;
-      background-color: #4fc3f7;
-      color: #121212;
-      border-radius: 5px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    a.button:hover {
-      background-color: #03a9f4;
-    }
   </style>
 </head>
 <body>
 
   <header>
+    <img src="https://avatars.githubusercontent.com/u/12345678?v=4" alt="Alan Schafer" />
     <h1>Alan Schafer</h1>
-    <p>Writer • Developer • Creator</p>
+    <p>Writer • Developer • Creative Explorer</p>
     <nav>
       <a href="https://github.com/alanschafer">GitHub</a>
       <a href="https://alanschafer.github.io/alanschafer/">Project Site</a>
+      <a href="#">My Writing</a>
     </nav>
   </header>
 
   <section class="content">
     <h2>About Me</h2>
-    <p>Hi! I'm Alan. I create things — stories, projects, and experiences. This is my personal GitHub homepage where you can find my latest work and experiments.</p>
+    <p>Hello! I'm Alan, crafting stories, projects, and experiments. Welcome to my GitHub homepage—where I share what I'm building.</p>
 
     <h2>Featured Projects</h2>
     <ul class="project-list">
       <li>
-        <strong><a href="https://github.com/alanschafer/alanschafer">alanschafer (Main Repository)</a></strong><br />
-        A collection of creative works, writing experiments, and more.
+        <strong><a href="https://github.com/alanschafer/alanschafer">alanschafer</a></strong><br />
+        A repository of creative writing and experimental projects.
       </li>
-      <!-- Add more projects below -->
+      <!-- Feel free to add more projects here -->
     </ul>
 
-    <a class="button" href="https://github.com/alanschafer">Visit My GitHub</a>
+    <a class="button" href="mailto:youremail@example.com">Contact Me</a>
   </section>
 
   <footer>
-    © 2025 Alan Schafer. Built with ✨ by hand.
+    © 2025 Alan Schafer. Crafted with care & code.
   </footer>
 
 </body>
