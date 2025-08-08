@@ -1,112 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact | VON Research & Analysis</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: #f9f9f9;
-            color: #333;
-        }
-        header {
-            background: #222;
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
-        nav {
-            background: #444;
-            padding: 10px;
-            text-align: center;
-        }
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 15px;
-            font-weight: bold;
-        }
-        nav a:hover {
-            text-decoration: underline;
-        }
-        main {
-            padding: 20px;
-            max-width: 900px;
-            margin: auto;
-        }
-        footer {
-            background: #222;
-            color: white;
-            text-align: center;
-            padding: 10px;
-            margin-top: 20px;
-        }
-        form {
-            background: white;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0px 2px 4px rgba(0,0,0,0.1);
-            max-width: 500px;
-            margin: auto;
-        }
-        input[type="text"], input[type="email"], textarea {
-            width: 100%;
-            padding: 10px;
-            margin: 8px 0;
-            border-radius: 4px;
-            border: 1px solid #ccc;
-        }
-        input[type="submit"] {
-            background: #222;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        input[type="submit"]:hover {
-            background: #444;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact | VON Research & Analysis</title>
+<style>
+/* === THEME FROM YOUR ORIGINAL SITE === */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #ffffff;
+  color: #000000;
+  margin: 0;
+  padding: 0;
+}
+header {
+  background-color: #003366;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+nav {
+  background-color: #0055a5;
+  padding: 10px;
+  text-align: center;
+}
+nav a {
+  color: white;
+  text-decoration: none;
+  padding: 8px 15px;
+  display: inline-block;
+}
+nav a:hover {
+  background-color: #003366;
+}
+main {
+  padding: 20px;
+  max-width: 900px;
+  margin: auto;
+}
+h1, h2 {
+  color: #003366;
+}
+footer {
+  background-color: #003366;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  margin-top: 40px;
+}
+form {
+  background-color: #f0f0f0;
+  padding: 20px;
+  border-radius: 8px;
+}
+input, textarea {
+  padding: 10px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 15px;
+}
+button {
+  padding: 10px 15px;
+  background-color: #003366;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #0055a5;
+}
+</style>
 </head>
 <body>
-    <header>
-        <h1>VON</h1>
-        <p>Research & Analysis</p>
-    </header>
 
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="publications.html">Publications</a>
-        <a href="newsletter.html">Newsletter</a>
-        <a href="contact.html">Contact</a>
-        <a href="blog.html">Blog</a>
-        <a href="reviews.html">Reviews</a>
-    </nav>
+<header>
+  <h1>Contact | VON Research & Analysis</h1>
+</header>
 
-    <main>
-        <h2>Contact Us</h2>
-        <p>We’d love to hear from you. Fill out the form below and we’ll get back to you as soon as possible.</p>
+<nav>
+  <a href="index.html">Home</a>
+  <a href="publications.html">Publications</a>
+  <a href="blog.html">Blog</a>
+  <a href="reviews.html">Reviews</a>
+  <a href="newsletter.html">Newsletter</a>
+  <a href="contact.html">Contact</a>
+</nav>
 
-        <form>
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" placeholder="Your full name">
+<main>
+  <h2>Get in Touch</h2>
+  <p>If you have questions, feedback, or business inquiries, please fill out the form below.</p>
 
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="Your email address">
+  <form>
+    <label for="name">Your Name:</label>
+    <input type="text" id="name" name="name" placeholder="Enter your name" required>
 
-            <label for="message">Message</label>
-            <textarea id="message" name="message" rows="5" placeholder="Your message"></textarea>
+    <label for="email">Your Email:</label>
+    <input type="email" id="email" name="email" placeholder="Enter your email" required>
 
-            <input type="submit" value="Send Message">
-        </form>
-    </main>
+    <label for="message">Your Message:</label>
+    <textarea id="message" name="message" rows="6" placeholder="Enter your message" required></textarea>
 
-    <footer>
-        <p>&copy; 2025 VON Research & Analysis. All rights reserved.</p>
-    </footer>
+    <button type="submit">Send Message</button>
+  </form>
+</main>
+
+<footer>
+  &copy; 2025 VON Research & Analysis. All rights reserved.
+</footer>
+
 </body>
 </html>
