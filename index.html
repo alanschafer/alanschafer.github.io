@@ -215,6 +215,60 @@
       box-shadow: 0 0 20px rgba(245, 245, 220, 0.1);
     }
 
+    .search-results {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: rgba(26, 26, 26, 0.95);
+      backdrop-filter: blur(20px);
+      border-radius: 15px;
+      border: 1px solid rgba(245, 245, 220, 0.1);
+      margin-top: 0.5rem;
+      max-height: 300px;
+      overflow-y: auto;
+      z-index: 1000;
+      display: none;
+    }
+
+    .search-result-item {
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid rgba(245, 245, 220, 0.05);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .search-result-item:hover {
+      background: rgba(245, 245, 220, 0.05);
+    }
+
+    .search-result-item:last-child {
+      border-bottom: none;
+    }
+
+    .search-result-title {
+      font-weight: 600;
+      color: #f5f5dc;
+      margin-bottom: 0.25rem;
+    }
+
+    .search-result-excerpt {
+      font-size: 0.9rem;
+      color: rgba(245, 245, 220, 0.7);
+      line-height: 1.4;
+    }
+
+    .search-highlight {
+      background: rgba(240, 230, 140, 0.3);
+      color: #f0e68c;
+    }
+
+    .no-results {
+      padding: 2rem;
+      text-align: center;
+      color: rgba(245, 245, 220, 0.6);
+    }
+
     /* --- Content Sections --- */
     .content-section {
       opacity: 1;
@@ -302,6 +356,10 @@
       transform: translateX(-50px);
       animation: slideInLeft 0.6s ease forwards;
       transform-style: preserve-3d;
+    }
+
+    .publication-item.hidden {
+      display: none;
     }
 
     .publication-item:nth-child(1) { animation-delay: 0.1s; }
@@ -597,13 +655,14 @@
     <!-- Search Bar -->
     <div class="search-container">
       <input type="text" class="search-input" placeholder="Search publications and reviews..." oninput="searchContent(this.value)">
+      <div class="search-results" id="search-results"></div>
     </div>
 
     <!-- Home/Mission Section -->
     <div id="home-section" class="content-section">
       <section class="mission-statement">
-        <h2 class="section-title">Mission</h2>
-        <p>VON demonstrates thoroughly efficient proficiency in the systematic organization and critical analysis of documents regarding belief formation, cognitive frameworks, and trauma-induced psychological phenomena. This work examines the structural patterns of memory, meaning-making, and neurological responses underlying conviction. The methodologies employed aim to systematically analyze the mechanics of human belief systems through careful documentation and clinical observation.</p>
+        <h2 class="section-title">Research Mission</h2>
+        <p>VON Research examines the psychological mechanisms behind belief formation, cognitive frameworks, and trauma-induced responses through evidence-based analysis. Our work provides practical insights into how beliefs shape behavior, how traumatic experiences alter cognitive patterns, and how individuals can develop more adaptive thinking patterns. We offer research-backed perspectives on overcoming rigid belief systems and building psychological resilience.</p>
       </section>
     </div>
 
@@ -617,8 +676,8 @@
             <div class="publication-link" onclick="window.open('https://alanschafer.github.io/Deconstruction/', '_blank')">
               <div class="publication-content">
                 <h3 class="publication-title">Bible Analysis</h3>
-                <p class="publication-abstract">A structural analysis of theological frameworks and their psychological impact.</p>
-                <div class="reading-time">📊 Case Analysis</div>
+                <p class="publication-abstract">A critical examination of biblical narratives and their psychological impact on believers, analyzing patterns of authoritarian control and cognitive dissonance in religious texts.</p>
+                <div class="reading-time">📊 Critical Analysis</div>
               </div>
               <span class="publication-arrow">&rarr;</span>
             </div>
@@ -628,8 +687,8 @@
             <div class="publication-link" onclick="window.open('https://alanschafer.github.io/TheBelievingBrain-/', '_blank')">
               <div class="publication-content">
                 <h3 class="publication-title">The Brain & Belief</h3>
-                <p class="publication-abstract">A neurological review of belief formation and its cognitive pathways.</p>
-                <div class="reading-time">🔬 Neurological Review</div>
+                <p class="publication-abstract">Exploring the neurological basis of belief formation, including how the brain processes contradictory information and maintains strongly-held convictions despite evidence.</p>
+                <div class="reading-time">🧠 Neurological Review</div>
               </div>
               <span class="publication-arrow">&rarr;</span>
             </div>
@@ -639,8 +698,8 @@
             <div class="publication-link" onclick="window.open('https://alanschafer.github.io/thirdpath/', '_blank')">
               <div class="publication-content">
                 <h3 class="publication-title">The Paths Narrative</h3>
-                <p class="publication-abstract">An examination of familial trauma resulting from dogmatic belief systems.</p>
-                <div class="reading-time">📖 Personal Narrative</div>
+                <p class="publication-abstract">A personal case study documenting the psychological trauma caused by fundamentalist religious upbringing and the process of cognitive recovery and identity reconstruction.</p>
+                <div class="reading-time">📖 Case Study</div>
               </div>
               <span class="publication-arrow">&rarr;</span>
             </div>
@@ -649,9 +708,9 @@
           <li class="publication-item">
             <div class="publication-link" onclick="window.open('https://alanschafer.github.io/Shorts/', '_blank')">
               <div class="publication-content">
-                <h3 class="publication-title">Mask Syndrom Narrative</h3>
-                <p class="publication-abstract">A study of trauma-induced amnesia and identity dissociation.</p>
-                <div class="reading-time">📝 Case Narrative</div>
+                <h3 class="publication-title">Trauma-Induced Identity Fragmentation</h3>
+                <p class="publication-abstract">An analysis of dissociative responses to psychological trauma, exploring how severe stress can fragment identity and memory, with implications for recovery.</p>
+                <div class="reading-time">🔬 Clinical Analysis</div>
               </div>
               <span class="publication-arrow">&rarr;</span>
             </div>
@@ -728,6 +787,40 @@
   <button class="install-button" onclick="installApp()">📱 Install App</button>
 
   <script>
+    // Search data structure
+    const searchData = [
+      {
+        title: "Bible Analysis",
+        content: "biblical narratives psychological impact believers authoritarian control cognitive dissonance religious texts",
+        type: "research",
+        url: "https://alanschafer.github.io/Deconstruction/"
+      },
+      {
+        title: "The Brain & Belief",
+        content: "neurological basis belief formation brain processes contradictory information convictions evidence",
+        type: "research",
+        url: "https://alanschafer.github.io/TheBelievingBrain-/"
+      },
+      {
+        title: "The Paths Narrative", 
+        content: "personal case study psychological trauma fundamentalist religious upbringing cognitive recovery identity reconstruction",
+        type: "research",
+        url: "https://alanschafer.github.io/thirdpath/"
+      },
+      {
+        title: "Trauma-Induced Identity Fragmentation",
+        content: "dissociative responses psychological trauma stress fragment identity memory recovery clinical analysis",
+        type: "research", 
+        url: "https://alanschafer.github.io/Shorts/"
+      },
+      {
+        title: "Citation Review: Dr. Robert Sapolsky on Belief Systems",
+        content: "sapolsky behave cognitive conditioning neuroplasticity belief formation scholarly perspectives",
+        type: "blog",
+        url: "sapolsky-review.html"
+      }
+    ];
+
     // Cursor Glow Effect
     const cursorGlow = document.getElementById('cursor-glow');
     
@@ -741,80 +834,28 @@
       cursorGlow.style.opacity = '0';
     });
 
-    // Navigation and Content Management
-    function showSection(sectionName) {
-      // Update active nav link
-      document.querySelectorAll('.nav-link').forEach(link => {
-        link.classList.remove('active');
-      });
-      
-      if (sectionName !== 'home') {
-        event.target.classList.add('active');
+    // Click outside to close search results
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.search-container')) {
+        document.getElementById('search-results').style.display = 'none';
       }
-
-      // Show/hide content sections
-      const sections = ['home-section', 'research-section', 'blog-section', 'reviews-section'];
-      sections.forEach(section => {
-        const element = document.getElementById(section);
-        if (section === sectionName + '-section') {
-          element.classList.remove('hidden');
-        } else if (sectionName === 'home' && section === 'home-section') {
-          element.classList.remove('hidden');
-        } else if (sectionName === 'research' && (section === 'research-section' || section === 'home-section')) {
-          element.classList.remove('hidden');
-        } else {
-          element.classList.add('hidden');
-        }
-      });
-
-      // Clear search
-      const searchInput = document.querySelector('.search-input');
-      if (searchInput) searchInput.value = '';
-    }
-
-    // Search Functionality (simplified)
-    function searchContent(query) {
-      // Simple search - can be expanded later
-      console.log('Searching for:', query);
-    }
-
-    // PWA Install Functionality  
-    let deferredPrompt;
-    
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js')
-          .then(registration => {
-            console.log('SW registered: ', registration);
-          })
-          .catch(registrationError => {
-            console.log('SW registration failed: ', registrationError);
-          });
-      });
-    }
-    
-    window.addEventListener('beforeinstallprompt', (e) => {
-      e.preventDefault();
-      deferredPrompt = e;
-      document.querySelector('.install-button').style.display = 'block';
     });
 
-    function installApp() {
-      if (deferredPrompt) {
-        deferredPrompt.prompt();
-        deferredPrompt.userChoice.then((choiceResult) => {
-          if (choiceResult.outcome === 'accepted') {
-            console.log('User accepted the install prompt');
-            document.querySelector('.install-button').style.display = 'none';
-          }
-          deferredPrompt = null;
+    // Search Functionality
+    function searchContent(query) {
+      const searchResults = document.getElementById('search-results');
+      const trimmedQuery = query.trim().toLowerCase();
+      
+      if (trimmedQuery.length === 0) {
+        searchResults.style.display = 'none';
+        // Show all publications
+        document.querySelectorAll('.publication-item').forEach(item => {
+          item.classList.remove('hidden');
         });
-      } else {
-        alert('To install this app:\n\n1. Click the browser menu (⋮)\n2. Select "Add to Home Screen"\n3. Confirm installation\n\nYou can then launch VON Research like a native app!');
+        return;
       }
-    }
 
-  </script>
-
-</body>
-</html>
+      // Filter search data
+      const results = searchData.filter(item => {
+        return item.title.toLowerCase().includes(trimmedQuery) || 
+               item.content.
