@@ -273,24 +273,6 @@
       to { width: 100%; }
     }
 
-    /* --- Typewriter Effect --- */
-    .typewriter-text {
-      overflow: hidden;
-      border-right: 2px solid #f5f5dc;
-      white-space: nowrap;
-      margin: 0 auto;
-      animation: blink-caret 1s infinite;
-    }
-
-    @keyframes blink-caret {
-      from, to { border-color: transparent; }
-      50% { border-color: #f5f5dc; }
-    }
-
-    .typewriter-complete {
-      border-right: none;
-    }
-
     /* --- Mission Statement --- */
     .mission-statement p {
       font-size: 1.3rem;
@@ -300,6 +282,8 @@
       line-height: 1.8;
       letter-spacing: 0.01em;
       word-spacing: 0.1em;
+      opacity: 1 !important;
+      border: none !important;
     }
 
     /* --- Publications List --- */
@@ -764,7 +748,7 @@
     <div id="home-section" class="content-section">
       <section class="mission-statement">
         <h2 class="section-title">Mission</h2>
-        <p id="mission-text" style="opacity: 1;">
+        <p id="mission-text" class="mission-text" style="opacity: 1 !important; border: none !important; display: block !important;">
           VON demonstrates thoroughly efficient proficiency in the systematic organization and critical analysis of documents regarding belief formation, cognitive frameworks, and trauma-induced psychological phenomena. This work examines the structural patterns of memory, meaning-making, and neurological responses underlying conviction. The methodologies employed aim to systematically analyze the mechanics of human belief systems through careful documentation and clinical observation.
         </p>
       </section>
