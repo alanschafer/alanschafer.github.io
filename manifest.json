@@ -1,25 +1,24 @@
 {
-  "name": "VON Research",
+  "name": "VON | Research & Analysis",
   "short_name": "VON",
-  "description": "Clinical research platform for belief systems and psychological phenomena",
-  "start_url": "/",
+  "description": "VON is a premier organization dedicated to in-depth research and analysis on emerging geopolitical, technological, and economic trends.",
+  "start_url": "index.html",
   "display": "standalone",
   "background_color": "#1a1a1a",
-  "theme_color": "#f5f5dc",
-  "orientation": "portrait-primary",
-  "scope": "/",
-  "lang": "en",
-  "categories": ["education", "research", "psychology"],
+  "theme_color": "#1a1a1a",
+  "orientation": "portrait",
   "icons": [
     {
-      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect width='192' height='192' fill='%23f5f5dc'/%3E%3Ctext x='96' y='120' font-family='Arial,sans-serif' font-size='48' font-weight='bold' text-anchor='middle' fill='%231a1a1a'%3EVON%3C/text%3E%3C/svg%3E",
+      "src": "icon-192.png",
       "sizes": "192x192",
-      "type": "image/svg+xml"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
-      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' fill='%23f5f5dc'/%3E%3Ctext x='256' y='320' font-family='Arial,sans-serif' font-size='120' font-weight='bold' text-anchor='middle' fill='%231a1a1a'%3EVON%3C/text%3E%3C/svg%3E",
+      "src": "icon-512.png",
       "sizes": "512x512",
-      "type": "image/svg+xml"
+      "type": "image/png",
+      "purpose": "any"
     }
   ]
 }
