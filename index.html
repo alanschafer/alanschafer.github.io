@@ -1140,17 +1140,12 @@
         document.getElementById('review-form').addEventListener('submit', handleReviewSubmission);
       }
 
-      // Start typewriter effect, but show text immediately if it fails
+      // Just show the mission text directly - no typewriter
       const missionElement = document.getElementById('mission-text');
-      if (missionElement && missionElement.textContent.trim()) {
-        setTimeout(() => {
-          startTypewriter();
-        }, 500);
-      } else {
-        // Fallback: ensure text shows even if typewriter fails
-        if (missionElement) {
-          missionElement.innerHTML = "Thorough and efficient attention is given to documents and critical observations regarding belief formation, cognitive frameworks, and trauma-induced psychological phenomena. This work examines the structural patterns of memory, meaning-making, and neurological responses underlying conviction. The methodologies employed aim to systematically analyze the mechanics of human belief systems through careful documentation and clinical observation.";
-        }
+      if (missionElement) {
+        missionElement.innerHTML = "Thorough and efficient attention is given to documents and critical observations regarding belief formation, cognitive frameworks, and trauma-induced psychological phenomena. This work examines the structural patterns of memory, meaning-making, and neurological responses underlying conviction. The methodologies employed aim to systematically analyze the mechanics of human belief systems through careful documentation and clinical observation.";
+        missionElement.classList.remove('typewriter-text');
+        missionElement.classList.add('typewriter-complete');
       }
     });
 
