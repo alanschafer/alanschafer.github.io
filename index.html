@@ -1057,23 +1057,39 @@
       return reviewDiv;
     }
 
-    // Typewriter Effect
+    // Typewriter Effect with fallback
     function startTypewriter() {
       const element = document.getElementById('mission-text');
       const missionText = "Thorough and efficient attention is given to documents and critical observations regarding belief formation, cognitive frameworks, and trauma-induced psychological phenomena. This work examines the structural patterns of memory, meaning-making, and neurological responses underlying conviction. The methodologies employed aim to systematically analyze the mechanics of human belief systems through careful documentation and clinical observation.";
+      
+      // Fallback: if typewriter fails, just show the text
+      const fallbackTimer = setTimeout(() => {
+        element.innerHTML = missionText;
+        element.classList.remove('typewriter-text');
+        element.classList.add('typewriter-complete');
+      }, 3000);
       
       element.innerHTML = '';
       element.classList.add('typewriter-text');
       
       let i = 0;
       function typing() {
-        if (i < missionText.length) {
-          element.innerHTML += missionText.charAt(i);
-          i++;
-          setTimeout(typing, 25);
-        } else {
-          element.classList.add('typewriter-complete');
+        try {
+          if (i < missionText.length) {
+            element.innerHTML += missionText.charAt(i);
+            i++;
+            setTimeout(typing, 20); // Slightly faster
+          } else {
+            clearTimeout(fallbackTimer);
+            element.classList.add('typewriter-complete');
+            element.classList.remove('typewriter-text');
+          }
+        } catch (error) {
+          // If anything goes wrong, show full text
+          clearTimeout(fallbackTimer);
+          element.innerHTML = missionText;
           element.classList.remove('typewriter-text');
+          element.classList.add('typewriter-complete');
         }
       }
       typing();
@@ -1124,10 +1140,18 @@
         document.getElementById('review-form').addEventListener('submit', handleReviewSubmission);
       }
 
-      // Start typewriter effect immediately after page loads
-      setTimeout(() => {
-        startTypewriter();
-      }, 500);
+      // Start typewriter effect, but show text immediately if it fails
+      const missionElement = document.getElementById('mission-text');
+      if (missionElement && missionElement.textContent.trim()) {
+        setTimeout(() => {
+          startTypewriter();
+        }, 500);
+      } else {
+        // Fallback: ensure text shows even if typewriter fails
+        if (missionElement) {
+          missionElement.innerHTML = "Thorough and efficient attention is given to documents and critical observations regarding belief formation, cognitive frameworks, and trauma-induced psychological phenomena. This work examines the structural patterns of memory, meaning-making, and neurological responses underlying conviction. The methodologies employed aim to systematically analyze the mechanics of human belief systems through careful documentation and clinical observation.";
+        }
+      }
     });
 
     // Navigation and Content Management
