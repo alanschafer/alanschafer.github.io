@@ -764,7 +764,7 @@
     <div id="home-section" class="content-section">
       <section class="mission-statement">
         <h2 class="section-title">Mission</h2>
-        <p id="mission-text">
+        <p id="mission-text" style="opacity: 1;">
           VON demonstrates thoroughly efficient proficiency in the systematic organization and critical analysis of documents regarding belief formation, cognitive frameworks, and trauma-induced psychological phenomena. This work examines the structural patterns of memory, meaning-making, and neurological responses underlying conviction. The methodologies employed aim to systematically analyze the mechanics of human belief systems through careful documentation and clinical observation.
         </p>
       </section>
@@ -1122,13 +1122,7 @@
         document.getElementById('review-form').addEventListener('submit', handleReviewSubmission);
       }
 
-      // Just show the mission text directly - no typewriter
-      const missionElement = document.getElementById('mission-text');
-      if (missionElement) {
-        missionElement.innerHTML = "VON demonstrates thoroughly efficient proficiency in the systematic organization and critical analysis of documents regarding belief formation, cognitive frameworks, and trauma-induced psychological phenomena. This work examines the structural patterns of memory, meaning-making, and neurological responses underlying conviction. The methodologies employed aim to systematically analyze the mechanics of human belief systems through careful documentation and clinical observation.";
-        missionElement.classList.remove('typewriter-text');
-        missionElement.classList.add('typewriter-complete');
-      }
+      // Don't touch the mission text at all - let it show from HTML
     });
 
     // Navigation and Content Management
