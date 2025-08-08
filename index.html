@@ -791,13 +791,13 @@
     const searchData = [
       {
         title: "Bible Analysis",
-        content: "biblical narratives psychological impact believers authoritarian control cognitive dissonance religious texts",
+        content: "biblical narratives psychological impact believers authoritarian control cognitive dissonance religious texts critical examination",
         type: "research",
         url: "https://alanschafer.github.io/Deconstruction/"
       },
       {
         title: "The Brain & Belief",
-        content: "neurological basis belief formation brain processes contradictory information convictions evidence",
+        content: "neurological basis belief formation brain processes contradictory information convictions evidence strongly-held despite",
         type: "research",
         url: "https://alanschafer.github.io/TheBelievingBrain-/"
       },
@@ -809,13 +809,13 @@
       },
       {
         title: "Trauma-Induced Identity Fragmentation",
-        content: "dissociative responses psychological trauma stress fragment identity memory recovery clinical analysis",
+        content: "dissociative responses psychological trauma stress fragment identity memory recovery clinical analysis severe implications",
         type: "research", 
         url: "https://alanschafer.github.io/Shorts/"
       },
       {
         title: "Citation Review: Dr. Robert Sapolsky on Belief Systems",
-        content: "sapolsky behave cognitive conditioning neuroplasticity belief formation scholarly perspectives",
+        content: "sapolsky behave cognitive conditioning neuroplasticity belief formation scholarly perspectives examining citations framework",
         type: "blog",
         url: "sapolsky-review.html"
       }
@@ -858,4 +858,147 @@
       // Filter search data
       const results = searchData.filter(item => {
         return item.title.toLowerCase().includes(trimmedQuery) || 
-               item.content.
+               item.content.toLowerCase().includes(trimmedQuery);
+      });
+
+      // Display search results
+      if (results.length > 0) {
+        searchResults.innerHTML = results.map(result => {
+          const highlightedTitle = highlightSearchTerm(result.title, trimmedQuery);
+          const excerpt = getExcerpt(result.content, trimmedQuery);
+          return `
+            <div class="search-result-item" onclick="window.open('${result.url}', '_blank')">
+              <div class="search-result-title">${highlightedTitle}</div>
+              <div class="search-result-excerpt">${excerpt}</div>
+            </div>
+          `;
+        }).join('');
+        searchResults.style.display = 'block';
+      } else {
+        searchResults.innerHTML = '<div class="no-results">No results found for "' + trimmedQuery + '"</div>';
+        searchResults.style.display = 'block';
+      }
+
+      // Filter visible publications
+      filterPublications(trimmedQuery);
+    }
+
+    // Helper function to highlight search terms
+    function highlightSearchTerm(text, term) {
+      const regex = new RegExp(`(${term})`, 'gi');
+      return text.replace(regex, '<span class="search-highlight">$1</span>');
+    }
+
+    // Helper function to get excerpt with highlighted terms
+    function getExcerpt(content, term) {
+      const words = content.split(' ');
+      const termIndex = words.findIndex(word => word.toLowerCase().includes(term.toLowerCase()));
+      
+      if (termIndex === -1) {
+        return highlightSearchTerm(words.slice(0, 15).join(' ') + '...', term);
+      }
+      
+      const start = Math.max(0, termIndex - 7);
+      const end = Math.min(words.length, termIndex + 8);
+      let excerpt = words.slice(start, end).join(' ');
+      
+      if (start > 0) excerpt = '...' + excerpt;
+      if (end < words.length) excerpt += '...';
+      
+      return highlightSearchTerm(excerpt, term);
+    }
+
+    // Filter visible publications based on search
+    function filterPublications(query) {
+      const publicationItems = document.querySelectorAll('.publication-item');
+      
+      publicationItems.forEach(item => {
+        const title = item.querySelector('.publication-title').textContent.toLowerCase();
+        const abstract = item.querySelector('.publication-abstract').textContent.toLowerCase();
+        
+        if (title.includes(query) || abstract.includes(query)) {
+          item.classList.remove('hidden');
+        } else {
+          item.classList.add('hidden');
+        }
+      });
+    }
+
+    // Navigation and Content Management
+    function showSection(sectionName) {
+      // Update active nav link
+      document.querySelectorAll('.nav-link').forEach(link => {
+        link.classList.remove('active');
+      });
+      
+      if (sectionName !== 'home') {
+        event.target.classList.add('active');
+      }
+
+      // Show/hide content sections
+      const sections = ['home-section', 'research-section', 'blog-section', 'reviews-section'];
+      sections.forEach(section => {
+        const element = document.getElementById(section);
+        if (section === sectionName + '-section') {
+          element.classList.remove('hidden');
+        } else if (sectionName === 'home' && section === 'home-section') {
+          element.classList.remove('hidden');
+        } else if (sectionName === 'research' && (section === 'research-section' || section === 'home-section')) {
+          element.classList.remove('hidden');
+        } else {
+          element.classList.add('hidden');
+        }
+      });
+
+      // Clear search
+      const searchInput = document.querySelector('.search-input');
+      if (searchInput) {
+        searchInput.value = '';
+        document.getElementById('search-results').style.display = 'none';
+        // Show all publications
+        document.querySelectorAll('.publication-item').forEach(item => {
+          item.classList.remove('hidden');
+        });
+      }
+    }
+
+    // PWA Install Functionality  
+    let deferredPrompt;
+    
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(registration => {
+            console.log('SW registered: ', registration);
+          })
+          .catch(registrationError => {
+            console.log('SW registration failed: ', registrationError);
+          });
+      });
+    }
+    
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      document.querySelector('.install-button').style.display = 'block';
+    });
+
+    function installApp() {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then((choiceResult) => {
+          if (choiceResult.outcome === 'accepted') {
+            console.log('User accepted the install prompt');
+            document.querySelector('.install-button').style.display = 'none';
+          }
+          deferredPrompt = null;
+        });
+      } else {
+        alert('To install this app:\\n\\n1. Click the browser menu (⋮)\\n2. Select "Add to Home Screen"\\n3. Confirm installation\\n\\nYou can then launch VON Research like a native app!');
+      }
+    }
+
+  </script>
+
+</body>
+</html>
