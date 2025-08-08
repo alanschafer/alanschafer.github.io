@@ -5,7 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>VON | Research & Analysis</title>
   <meta name="theme-color" content="#1a1a1a">
-  <link rel="manifest" href="data:application/json,{}">
+  <link rel="manifest" href="manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="VON Research">
   <style>
     * {
       margin: 0;
@@ -60,6 +63,20 @@
       padding: 0 3rem;
       position: relative;
       z-index: 2;
+    }
+
+    /* --- Cursor Glow Effect --- */
+    .cursor-glow {
+      position: fixed;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(245,245,220,0.1) 0%, rgba(245,245,220,0.05) 30%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+      opacity: 0;
+      transition: opacity 0.3s ease;
     }
 
     /* --- Header & Navigation --- */
@@ -193,14 +210,9 @@
 
     /* --- Content Sections --- */
     .content-section {
-      opacity: 0;
-      transform: translateY(50px);
-      transition: all 0.6s ease;
-    }
-
-    .content-section.visible {
       opacity: 1;
       transform: translateY(0);
+      transition: all 0.6s ease;
     }
 
     .content-section.hidden {
@@ -219,13 +231,12 @@
       padding: 4rem;
       border: 1px solid rgba(245, 245, 220, 0.06);
       transition: all 0.4s ease;
-      cursor: pointer;
     }
 
     section:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
-      background: rgba(245, 245, 220, 0.04);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      background: rgba(245, 245, 220, 0.03);
     }
     
     .section-title {
@@ -255,61 +266,6 @@
       to { width: 100%; }
     }
 
-    /* --- Mission Statement --- */
-    .mission-statement p {
-      font-size: 1.3rem;
-      max-width: 800px;
-      color: #f5f5dc;
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-      line-height: 1.8;
-      letter-spacing: 0.01em;
-      word-spacing: 0.1em;
-    }
-
-    /* --- Publications List --- */
-    .publication-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    /* --- Cursor Glow Effect --- */
-    .cursor-glow {
-      position: fixed;
-      width: 200px;
-      height: 200px;
-      background: radial-gradient(circle, rgba(245,245,220,0.1) 0%, rgba(245,245,220,0.05) 30%, transparent 70%);
-      border-radius: 50%;
-      pointer-events: none;
-      transform: translate(-50%, -50%);
-      z-index: 1;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    /* --- 3D Card Effects --- */
-    .publication-item {
-      margin-bottom: 2.5rem;
-      background: rgba(245, 245, 220, 0.01);
-      border-radius: 20px;
-      overflow: hidden;
-      transition: all 0.4s ease;
-      border: 1px solid rgba(245, 245, 220, 0.04);
-      opacity: 0;
-      transform: translateX(-50px);
-      animation: slideInLeft 0.6s ease forwards;
-      transform-style: preserve-3d;
-    }
-
-    .publication-item:hover {
-      background: rgba(245, 245, 220, 0.05);
-      transform: translateX(15px) rotateY(8deg) rotateX(3deg) scale(1.02);
-      border-color: rgba(245, 245, 220, 0.15);
-      box-shadow: 
-        0 25px 50px rgba(0, 0, 0, 0.4),
-        0 0 30px rgba(245, 245, 220, 0.1);
-    }
-
     /* --- Typewriter Effect --- */
     .typewriter-text {
       overflow: hidden;
@@ -328,6 +284,37 @@
       border-right: none;
     }
 
+    /* --- Mission Statement --- */
+    .mission-statement p {
+      font-size: 1.3rem;
+      max-width: 800px;
+      color: #f5f5dc;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      line-height: 1.8;
+      letter-spacing: 0.01em;
+      word-spacing: 0.1em;
+    }
+
+    /* --- Publications List --- */
+    .publication-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .publication-item {
+      margin-bottom: 2.5rem;
+      background: rgba(245, 245, 220, 0.01);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: all 0.4s ease;
+      border: 1px solid rgba(245, 245, 220, 0.04);
+      opacity: 0;
+      transform: translateX(-50px);
+      animation: slideInLeft 0.6s ease forwards;
+      transform-style: preserve-3d;
+    }
+
     .publication-item:nth-child(1) { animation-delay: 0.1s; }
     .publication-item:nth-child(2) { animation-delay: 0.2s; }
     .publication-item:nth-child(3) { animation-delay: 0.3s; }
@@ -343,9 +330,11 @@
 
     .publication-item:hover {
       background: rgba(245, 245, 220, 0.05);
-      transform: translateX(15px) scale(1.02);
+      transform: translateX(10px) rotateY(3deg) rotateX(1deg) scale(1.01);
       border-color: rgba(245, 245, 220, 0.15);
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+      box-shadow: 
+        0 15px 30px rgba(0, 0, 0, 0.3),
+        0 0 20px rgba(245, 245, 220, 0.05);
     }
     
     .publication-link {
@@ -376,7 +365,7 @@
 
     .publication-link:hover .publication-title {
       color: #f0e68c;
-      transform: translateX(10px);
+      transform: translateX(5px);
     }
 
     .publication-abstract {
@@ -402,7 +391,7 @@
     }
     
     .publication-link:hover .publication-arrow {
-      transform: rotate(0deg) translateX(10px) scale(1.2);
+      transform: rotate(0deg) translateX(5px) scale(1.1);
       color: #f0e68c;
     }
 
@@ -418,12 +407,147 @@
       color: #f0e68c;
     }
 
-    /* --- Reviews with Stars --- */
+    /* --- Review Form Styles --- */
+    .review-form {
+      background: rgba(245, 245, 220, 0.03);
+      border-radius: 20px;
+      padding: 3rem;
+      margin-bottom: 3rem;
+      border: 1px solid rgba(245, 245, 220, 0.08);
+    }
+
+    .form-group {
+      margin-bottom: 2rem;
+    }
+
+    .form-label {
+      display: block;
+      color: #f5f5dc;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+      font-size: 1rem;
+    }
+
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      padding: 1rem;
+      background: rgba(245, 245, 220, 0.05);
+      border: 1px solid rgba(245, 245, 220, 0.1);
+      border-radius: 10px;
+      color: #f5f5dc;
+      font-size: 1rem;
+      outline: none;
+      transition: all 0.3s ease;
+    }
+
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: rgba(245, 245, 220, 0.3);
+      background: rgba(245, 245, 220, 0.08);
+    }
+
+    .form-textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .form-input::placeholder, .form-textarea::placeholder {
+      color: rgba(245, 245, 220, 0.5);
+    }
+
+    .star-rating {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .star {
+      font-size: 2rem;
+      color: rgba(245, 245, 220, 0.3);
+      cursor: pointer;
+      transition: color 0.2s ease;
+    }
+
+    .star.active, .star:hover {
+      color: #f0e68c;
+    }
+
+    .submit-btn {
+      background: linear-gradient(135deg, #f5f5dc, #d2b48c);
+      color: #1a1a1a;
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 1rem;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(245, 245, 220, 0.3);
+    }
+
+    .submit-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    /* --- Review Display --- */
+    .review-item {
+      background: rgba(245, 245, 220, 0.01);
+      border-radius: 15px;
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+      border: 1px solid rgba(245, 245, 220, 0.04);
+      transition: all 0.3s ease;
+    }
+
+    .review-item:hover {
+      background: rgba(245, 245, 220, 0.03);
+      border-color: rgba(245, 245, 220, 0.1);
+    }
+
+    .review-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .review-author {
+      font-weight: 600;
+      color: #f5f5dc;
+    }
+
+    .review-date {
+      color: rgba(245, 245, 220, 0.6);
+      font-size: 0.9rem;
+    }
+
+    .review-book {
+      color: #f0e68c;
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+
     .review-stars {
       color: #f0e68c;
-      font-size: 1.2rem;
-      margin-right: 0.5rem;
+      margin-bottom: 1rem;
       filter: drop-shadow(0 0 3px rgba(240, 230, 140, 0.3));
+    }
+
+    .review-text {
+      color: #f5f5dc;
+      line-height: 1.6;
+      word-wrap: break-word;
+    }
+
+    .no-reviews {
+      text-align: center;
+      color: rgba(245, 245, 220, 0.6);
+      padding: 3rem;
+      font-style: italic;
     }
 
     /* --- Footer --- */
@@ -558,6 +682,31 @@
         align-self: flex-end;
       }
 
+      .publication-title {
+        font-size: 1.3rem;
+        word-wrap: break-word;
+        hyphens: auto;
+      }
+
+      .publication-abstract {
+        font-size: 1rem;
+        word-wrap: break-word;
+        hyphens: auto;
+      }
+
+      .mission-statement p {
+        font-size: 1.1rem;
+        word-wrap: break-word;
+        hyphens: auto;
+      }
+
+      footer .container {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+        text-align: center;
+      }
+
       .install-button {
         bottom: 1rem;
         right: 1rem;
@@ -575,148 +724,6 @@
     ::selection {
       background: rgba(210, 180, 140, 0.3);
       color: #f5f5dc;
-    }
-
-    /* --- Review Form Styles --- */
-    .review-form {
-      background: rgba(245, 245, 220, 0.03);
-      border-radius: 20px;
-      padding: 3rem;
-      margin-bottom: 3rem;
-      border: 1px solid rgba(245, 245, 220, 0.08);
-    }
-
-    .form-group {
-      margin-bottom: 2rem;
-    }
-
-    .form-label {
-      display: block;
-      color: #f5f5dc;
-      font-weight: 500;
-      margin-bottom: 0.5rem;
-      font-size: 1rem;
-    }
-
-    .form-input, .form-select, .form-textarea {
-      width: 100%;
-      padding: 1rem;
-      background: rgba(245, 245, 220, 0.05);
-      border: 1px solid rgba(245, 245, 220, 0.1);
-      border-radius: 10px;
-      color: #f5f5dc;
-      font-size: 1rem;
-      outline: none;
-      transition: all 0.3s ease;
-    }
-
-    .form-input:focus, .form-select:focus, .form-textarea:focus {
-      border-color: rgba(245, 245, 220, 0.3);
-      background: rgba(245, 245, 220, 0.08);
-    }
-
-    .form-textarea {
-      min-height: 120px;
-      resize: vertical;
-    }
-
-    .form-input::placeholder, .form-textarea::placeholder {
-      color: rgba(245, 245, 220, 0.5);
-    }
-
-    .star-rating {
-      display: flex;
-      gap: 0.5rem;
-      margin-bottom: 1rem;
-    }
-
-    .star {
-      font-size: 2rem;
-      color: rgba(245, 245, 220, 0.3);
-      cursor: pointer;
-      transition: color 0.2s ease;
-    }
-
-    .star.active, .star:hover {
-      color: #f0e68c;
-    }
-
-    .submit-btn {
-      background: linear-gradient(135deg, #f5f5dc, #d2b48c);
-      color: #1a1a1a;
-      border: none;
-      padding: 1rem 2rem;
-      border-radius: 50px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-size: 1rem;
-    }
-
-    .submit-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(245, 245, 220, 0.3);
-    }
-
-    .submit-btn:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-    }
-
-    /* --- Review Display --- */
-    .review-item {
-      background: rgba(245, 245, 220, 0.01);
-      border-radius: 15px;
-      padding: 2rem;
-      margin-bottom: 1.5rem;
-      border: 1px solid rgba(245, 245, 220, 0.04);
-      transition: all 0.3s ease;
-    }
-
-    .review-item:hover {
-      background: rgba(245, 245, 220, 0.03);
-      border-color: rgba(245, 245, 220, 0.1);
-    }
-
-    .review-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 1rem;
-    }
-
-    .review-author {
-      font-weight: 600;
-      color: #f5f5dc;
-    }
-
-    .review-date {
-      color: rgba(245, 245, 220, 0.6);
-      font-size: 0.9rem;
-    }
-
-    .review-book {
-      color: #f0e68c;
-      font-size: 0.9rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .review-stars {
-      color: #f0e68c;
-      margin-bottom: 1rem;
-    }
-
-    .review-text {
-      color: #f5f5dc;
-      line-height: 1.6;
-      word-wrap: break-word;
-    }
-
-    .no-reviews {
-      text-align: center;
-      color: rgba(245, 245, 220, 0.6);
-      padding: 3rem;
-      font-style: italic;
     }
 
   </style>
@@ -751,17 +758,17 @@
     </div>
 
     <!-- Home/Mission Section -->
-    <div id="home-section" class="content-section visible">
+    <div id="home-section" class="content-section">
       <section class="mission-statement">
         <h2 class="section-title">Mission</h2>
         <p id="mission-text">
-          VON documents clinical observations regarding belief formation, cognitive frameworks, and trauma-induced psychological phenomena. This work examines the structural patterns of memory, meaning-making, and neurological responses underlying conviction. The methodologies employed aim to systematically analyze the mechanics of human belief systems through careful documentation and clinical observation.
+          Thorough and efficient attention is given to documents and critical observations regarding belief formation, cognitive frameworks, and trauma-induced psychological phenomena. This work examines the structural patterns of memory, meaning-making, and neurological responses underlying conviction. The methodologies employed aim to systematically analyze the mechanics of human belief systems through careful documentation and clinical observation.
         </p>
       </section>
     </div>
 
     <!-- Research Section -->
-    <div id="research-section" class="content-section visible">
+    <div id="research-section" class="content-section">
       <section>
         <h2 class="section-title">Published Research</h2>
         <ul class="publication-list" id="publications-list">
@@ -915,11 +922,6 @@
       </section>
     </div>
 
-    <!-- No Results Message -->
-    <div class="no-results" id="no-results">
-      <p>No results found. Try a different search term.</p>
-    </div>
-
   </main>
 
   <footer id="contact">
@@ -1058,7 +1060,7 @@
     // Typewriter Effect
     function startTypewriter() {
       const element = document.getElementById('mission-text');
-      const missionText = "VON documents clinical observations regarding belief formation, cognitive frameworks, and trauma-induced psychological phenomena. This work examines the structural patterns of memory, meaning-making, and neurological responses underlying conviction. The methodologies employed aim to systematically analyze the mechanics of human belief systems through careful documentation and clinical observation.";
+      const missionText = "Thorough and efficient attention is given to documents and critical observations regarding belief formation, cognitive frameworks, and trauma-induced psychological phenomena. This work examines the structural patterns of memory, meaning-making, and neurological responses underlying conviction. The methodologies employed aim to systematically analyze the mechanics of human belief systems through careful documentation and clinical observation.";
       
       element.innerHTML = '';
       element.classList.add('typewriter-text');
@@ -1102,10 +1104,10 @@
           const centerX = rect.width / 2;
           const centerY = rect.height / 2;
           
-          const rotateX = (y - centerY) / 10;
-          const rotateY = (centerX - x) / 10;
+          const rotateX = (y - centerY) / 25; // Much gentler (was /10)
+          const rotateY = (centerX - x) / 25; // Much gentler (was /10)
           
-          this.style.transform = `translateX(15px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+          this.style.transform = `translateX(5px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.005)`;
         });
         
         item.addEventListener('mouseleave', function() {
@@ -1118,7 +1120,9 @@
       displayReviews();
       
       // Add form submission handler
-      document.getElementById('review-form').addEventListener('submit', handleReviewSubmission);
+      if (document.getElementById('review-form')) {
+        document.getElementById('review-form').addEventListener('submit', handleReviewSubmission);
+      }
 
       // Start typewriter effect immediately after page loads
       setTimeout(() => {
@@ -1143,28 +1147,24 @@
         const element = document.getElementById(section);
         if (section === sectionName + '-section') {
           element.classList.remove('hidden');
-          element.classList.add('visible');
         } else if (sectionName === 'home' && section === 'home-section') {
           element.classList.remove('hidden');
-          element.classList.add('visible');
         } else if (sectionName === 'research' && (section === 'research-section' || section === 'home-section')) {
           element.classList.remove('hidden');
-          element.classList.add('visible');
         } else {
           element.classList.add('hidden');
-          element.classList.remove('visible');
         }
       });
 
       // Clear search
-      document.querySelector('.search-input').value = '';
+      const searchInput = document.querySelector('.search-input');
+      if (searchInput) searchInput.value = '';
       showAllItems();
     }
 
     // Search Functionality
     function searchContent(query) {
       const items = document.querySelectorAll('.publication-item');
-      let hasResults = false;
 
       if (query.trim() === '') {
         showAllItems();
@@ -1172,16 +1172,15 @@
       }
 
       items.forEach(item => {
-        const title = item.querySelector('.publication-title').textContent.toLowerCase();
-        const abstract = item.querySelector('.publication-abstract').textContent.toLowerCase();
-        const tags = item.getAttribute('data-tags');
+        const title = item.querySelector('.publication-title')?.textContent.toLowerCase() || '';
+        const abstract = item.querySelector('.publication-abstract')?.textContent.toLowerCase() || '';
+        const tags = item.getAttribute('data-tags') || '';
         const searchTerm = query.toLowerCase();
 
-        if (title.includes(searchTerm) || abstract.includes(searchTerm) || (tags && tags.toLowerCase().includes(searchTerm))) {
+        if (title.includes(searchTerm) || abstract.includes(searchTerm) || tags.toLowerCase().includes(searchTerm)) {
           item.style.display = 'block';
           item.style.opacity = '1';
           item.style.transform = 'translateX(0)';
-          hasResults = true;
         } else {
           item.style.display = 'none';
         }
@@ -1200,6 +1199,19 @@
 
     // PWA Install Functionality
     let deferredPrompt;
+    
+    // Register service worker
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(registration => {
+            console.log('SW registered: ', registration);
+          })
+          .catch(registrationError => {
+            console.log('SW registration failed: ', registrationError);
+          });
+      });
+    }
     
     window.addEventListener('beforeinstallprompt', (e) => {
       e.preventDefault();
@@ -1227,7 +1239,8 @@
     document.addEventListener('keydown', function(e) {
       if (e.ctrlKey && e.key === 'k') {
         e.preventDefault();
-        document.querySelector('.search-input').focus();
+        const searchInput = document.querySelector('.search-input');
+        if (searchInput) searchInput.focus();
       }
     });
 
