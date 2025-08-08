@@ -1,53 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>  
-  <meta charset="UTF-8" />  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />  
-  <title>Blog | VON</title>  
-  <meta name="description" content="Insightful editorials and timely updates from the VON research community.">  
-  <meta name="theme-color" content="#1a1a1a">  
-  <link rel="stylesheet" href="style.css">  
-  <link rel="manifest" href="manifest.json">  
-</head>  
-<body>  
-  <div class="cursor-glow"></div>  
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | VON Research & Analysis</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f9f9f9;
+            color: #333;
+        }
+        header {
+            background: #222;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        nav {
+            background: #444;
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        main {
+            padding: 20px;
+            max-width: 900px;
+            margin: auto;
+        }
+        footer {
+            background: #222;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin-top: 20px;
+        }
+        .blog-post {
+            background: white;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            box-shadow: 0px 2px 4px rgba(0,0,0,0.1);
+        }
+        .blog-post h3 {
+            margin-top: 0;
+        }
+        .blog-post small {
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>VON</h1>
+        <p>Research & Analysis</p>
+    </header>
 
-  <header class="site-header">  
-    <div class="container header-content">  
-      <div class="org-branding">  
-        <a href="index.html" class="org-name-link">  
-          <h1 class="org-name">VON</h1>  
-          <p class="org-subtitle">Research & Analysis</p>  
-        </a>  
-      </div>  
-      <nav class="main-nav">  
-        <a href="index.html">Home</a>  
-        <a href="research.html">Research</a>  
-        <a href="blog.html" class="active">Blog</a>  
-        <a href="about.html">About</a>  
-        <a href="contact.html">Contact</a>  
-      </nav>  
-    </div>  
-  </header>  
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="publications.html">Publications</a>
+        <a href="newsletter.html">Newsletter</a>
+        <a href="contact.html">Contact</a>
+        <a href="blog.html">Blog</a>
+        <a href="reviews.html">Reviews</a>
+    </nav>
 
-  <main class="container">  
-    <section>
-      <h2 class="section-title">Latest Posts</h2>
-      <article class="blog-post">
-        <h3 class="post-title">Rethinking Digital Sovereignty</h3>
-        <p class="post-excerpt">How emerging nations are pushing back against tech monopolies through data localization laws.</p>
-      </article>
-      <article class="blog-post">
-        <h3 class="post-title">5 Trends to Watch in 2026</h3>
-        <p class="post-excerpt">Forecasting key geopolitical shifts, tech breakthroughs, and global risks.</p>
-      </article>
-    </section>
-  </main>  
+    <main>
+        <h2>Blog</h2>
+        <p>Insights, opinions, and thought pieces from the VON team.</p>
 
-  <footer class="site-footer-main">  
-    <p>&copy; 2025 VON Research & Analysis. All Rights Reserved.</p>  
-  </footer>  
+        <div class="blog-post">
+            <h3>Blog Post One</h3>
+            <small>Published on August 1, 2025</small>
+            <p>This is a short preview of the first blog post. <a href="#">Read more</a></p>
+        </div>
 
-  <script src="script.js"></script>  
-</body>  
+        <div class="blog-post">
+            <h3>Blog Post Two</h3>
+            <small>Published on July 25, 2025</small>
+            <p>This is a short preview of the second blog post. <a href="#">Read more</a></p>
+        </div>
+
+        <div class="blog-post">
+            <h3>Blog Post Three</h3>
+            <small>Published on July 15, 2025</small>
+            <p>This is a short preview of the third blog post. <a href="#">Read more</a></p>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 VON Research & Analysis. All rights reserved.</p>
+    </footer>
+</body>
 </html>
