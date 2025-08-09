@@ -5,6 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Publications | VON Research & Analysis</title>
   <meta name="theme-color" content="#1a1a1a">
+  <link rel="manifest" href="manifest.json">
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js').catch(err => console.error('SW reg failed:', err));
+    }
+  </script>
   <style>
     body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       background: linear-gradient(135deg, #1a1a1a, #2d2d2d, #1a1a1a); color: #f5f5dc; margin: 0; line-height: 1.8; }
@@ -15,12 +21,12 @@
     nav a { color: #f5f5dc; text-decoration: none; padding: 0.5rem 1rem; border-radius: 25px; font-size: 0.9rem; transition: background 0.3s; }
     nav a:hover, nav a.active { background: rgba(245,245,220,0.05); color: #f0e68c; }
     main { max-width: 900px; margin: 3rem auto; padding: 2rem; background: rgba(245, 245, 220, 0.02); border-radius: 20px; border: 1px solid rgba(245, 245, 220, 0.06); }
-    h2 { color: #f5f5dc; margin-bottom: 1rem; }
-    p { color: rgba(245, 245, 220, 0.85); margin-bottom: 2rem; }
-    ul { list-style: none; padding: 0; }
-    li { background: rgba(245, 245, 220, 0.02); border: 1px solid rgba(245, 245, 220, 0.06);
-      padding: 1rem; border-radius: 10px; margin-bottom: 1rem; transition: background 0.3s; }
-    li:hover { background: rgba(245, 245, 220, 0.05); }
+    h2 { color: #f5f5dc; margin-bottom: 2rem; text-align: center; }
+    .pub-list { list-style: none; padding: 0; margin: 0; }
+    .pub-item { margin-bottom: 1.5rem; padding: 1rem; background: rgba(245,245,220,0.03); border: 1px solid rgba(245,245,220,0.08); border-radius: 12px; transition: background 0.3s; }
+    .pub-item:hover { background: rgba(245,245,220,0.05); }
+    .pub-item a { color: #f0e68c; text-decoration: none; font-weight: 600; }
+    .pub-item a:hover { text-decoration: underline; }
     footer { text-align: center; padding: 2rem; font-size: 0.9rem; color: rgba(245, 245, 220, 0.7); border-top: 1px solid rgba(245,245,220,0.08); margin-top: 4rem; }
   </style>
 </head>
@@ -40,12 +46,12 @@
 </nav>
 
 <main>
-  <h2>Our Publications</h2>
-  <p>Browse our collection of research papers, reports, and analytical articles.</p>
-  <ul>
-    <li><strong>PTSD Brain Changes Analysis</strong> — An in-depth look at how PTSD affects brain structure and function.</li>
-    <li><strong>Sapolsky: Religion Analysis</strong> — Reviewing Robert Sapolsky’s work on religion from a scientific perspective.</li>
-    <li><strong>Sapolsky Review</strong> — Critical review and commentary on Sapolsky’s latest findings.</li>
+  <h2>Publications</h2>
+  <ul class="pub-list">
+    <li class="pub-item"><a href="https://alanschafer.github.io/Deconstruction/" target="_blank">Deconstruction</a></li>
+    <li class="pub-item"><a href="https://alanschafer.github.io/Shorts/" target="_blank">Shorts</a></li>
+    <li class="pub-item"><a href="https://alanschafer.github.io/TheBelievingBrain-/" target="_blank">The Believing Brain</a></li>
+    <li class="pub-item"><a href="https://alanschafer.github.io/thirdpath/" target="_blank">The Third Path</a></li>
   </ul>
 </main>
 
