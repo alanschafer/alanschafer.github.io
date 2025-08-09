@@ -1,99 +1,353 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>VON | Blog</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>VON | Research Blog</title>
   <meta name="theme-color" content="#1a1a1a">
-  <link rel="manifest" href="manifest.json">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="VON Research & Analysis">
-  <link rel="stylesheet" href="style.css">
-
+  <link rel="manifest" href="/manifest.json">
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #1a1a1a;
-      color: #f5f5dc;
-      padding: 2rem;
-      max-width: 900px;
-      margin: auto;
+    :root{
+      --bg-dark:#1a1a1a;
+      --bg-mid:#2d2d2d;
+      --panel:rgba(245,245,220,0.02);
+      --accent:#f0e68c;
+      --gold:#d2b48c;
+      --text:#f5f5dc;
+      --muted:rgba(245,245,220,0.75);
+      --container-max:1000px;
     }
-    h1 {
-      text-align: center;
-      margin-bottom: 2rem;
-      background: linear-gradient(135deg, #f5f5dc, #e6d7a3);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+    html,body{
+      height:100%;
+      margin:0;
+      background: linear-gradient(135deg,var(--bg-dark),var(--bg-mid));
+      color:var(--text);
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
     }
+
+    /* ---------- Header / Nav (copied + adapted from index) ---------- */
+    .site-header{
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      background: rgba(26,26,26,0.65);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(245,245,220,0.06);
+    }
+    .container{
+      max-width:var(--container-max);
+      margin:0 auto;
+      padding:0 1.25rem;
+    }
+    .header-inner{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:1rem;
+      padding:1rem 0;
+    }
+    .org-branding{display:flex;flex-direction:column;line-height:1}
+    .org-name{
+      font-size:1.5rem;
+      font-weight:700;
+      letter-spacing:0.18em;
+      text-transform:uppercase;
+      background:linear-gradient(135deg,#f5f5dc,#e6d7a3);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      cursor:pointer;
+      margin:0;
+    }
+    .org-subtitle{
+      font-size:1.25rem;
+      font-weight:700;
+      letter-spacing:0.18em;
+      text-transform:uppercase;
+      margin-top:-0.18rem;
+      background:linear-gradient(135deg,#f5f5dc,#e6d7a3);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
+
+    nav.main-nav{
+      display:flex;
+      gap:0.5rem;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+    nav.main-nav a{
+      color:var(--text);
+      text-decoration:none;
+      font-size:0.85rem;
+      padding:0.35rem 0.7rem;
+      border-radius:20px;
+      border:1px solid rgba(245,245,220,0.02);
+      background:transparent;
+    }
+    nav.main-nav a:hover{ background: rgba(245,245,220,0.03); color:var(--accent) }
+    nav.main-nav a.active{ background: rgba(245,245,220,0.05); color:var(--accent) }
+
+    /* Install button */
+    .install-button{
+      margin-left:0.5rem;
+      padding:0.5rem 0.9rem;
+      border-radius:24px;
+      border:none;
+      background:linear-gradient(135deg,#f5f5dc,#d2b48c);
+      color:#111;
+      font-weight:700;
+      cursor:pointer;
+    }
+    .install-button.hidden{ display:none !important; }
+
+    /* ---------- Page content ---------- */
+    main{
+      max-width:var(--container-max);
+      margin: 1.25rem auto;
+      padding: 0 1.25rem 3rem;
+    }
+
+    .page-intro{
+      background:var(--panel);
+      border:1px solid rgba(245,245,220,0.06);
+      border-radius:12px;
+      padding:1.25rem 1.5rem;
+      margin-bottom:1.25rem;
+      line-height:1.6;
+      color:var(--muted);
+    }
+    .page-intro strong{ color:var(--text); }
+
+    /* Posts list */
+    .posts { display:flex;flex-direction:column;gap:1rem; }
     .post {
-      border: 1px solid rgba(245, 245, 220, 0.2);
-      border-radius: 10px;
-      margin-bottom: 1rem;
-      background: rgba(245, 245, 220, 0.02);
-      overflow: hidden;
+      background:var(--panel);
+      border:1px solid rgba(245,245,220,0.06);
+      border-radius:12px;
+      overflow:hidden;
+      transition:transform .18s ease, box-shadow .18s ease;
     }
-    .post-header {
-      padding: 1rem;
-      cursor: pointer;
-      background: rgba(245, 245, 220, 0.05);
-      font-weight: bold;
+    .post:hover{ transform:translateY(-4px); box-shadow:0 12px 30px rgba(0,0,0,0.45); }
+    .post-header{
+      padding:1rem 1.25rem;
+      cursor:pointer;
+      font-weight:700;
+      display:flex;
+      flex-direction:column;
+      gap:.35rem;
+      background:rgba(245,245,220,0.03);
     }
-    .post-header:hover {
-      background: rgba(245, 245, 220, 0.1);
+    .post-title{ font-size:1.05rem; color:var(--text) }
+    .post-meta{ font-size:.9rem; color:var(--muted) }
+
+    .post-body{
+      display:none;
+      padding:1rem 1.25rem 1.5rem;
+      border-top:1px solid rgba(245,245,220,0.04);
     }
-    .post-content {
-      display: none;
-      padding: 1rem;
-      border-top: 1px solid rgba(245, 245, 220, 0.2);
+    .post-body.open{ display:block; }
+
+    .post-body p{ color:var(--muted); margin:0 0 1rem; line-height:1.6; }
+
+    /* responsive video wrapper */
+    .video-wrap{
+      position:relative;
+      padding-top:56.25%; /* 16:9 */
+      width:100%;
+      height:0;
+      margin-bottom:0.75rem;
+      border-radius:8px;
+      overflow:hidden;
+      background:#000; /* fallback while loading */
+      border:1px solid rgba(245,245,220,0.05);
     }
-    .post-content iframe {
-      width: 100%;
-      height: 315px;
-      border: none;
+    .video-wrap iframe{
+      position:absolute;
+      top:0; left:0;
+      width:100%;
+      height:100%;
+      border:0;
     }
-    .active .post-content {
-      display: block;
+
+    /* Footer */
+    footer{
+      border-top:1px solid rgba(245,245,220,0.06);
+      margin-top:2rem;
+      padding:2rem 0;
+      text-align:center;
+      color:var(--muted);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width:760px){
+      .header-inner{ flex-direction:column; align-items:center; gap:.75rem; padding-bottom:.5rem; }
+      nav.main-nav{ justify-content:center; }
+      .org-name{ font-size:1.35rem; }
+      main{ padding:0 0.9rem 3rem; }
     }
   </style>
 </head>
 <body>
 
-<h1>Research Blog</h1>
+  <!-- Header / Nav -->
+  <header class="site-header" role="banner">
+    <div class="container">
+      <div class="header-inner">
+        <div class="org-branding" onclick="location.href='/index.html'">
+          <div class="org-name">VON</div>
+          <div class="org-subtitle">Research</div>
+        </div>
 
-<div class="post active">
-  <div class="post-header">Trauma on the Brain: The Neurobiological Effects of PTSD | Daisy Payton | TEDxMeritAcademy</div>
-  <div class="post-content">
-    <p>This talk delves into how trauma changes the brain’s structure and chemistry, affecting memory, emotional regulation, and daily functioning. It explores the scientific basis for understanding PTSD and why awareness is crucial for healing.</p>
-    <iframe src="https://www.youtube.com/embed/myLT3vpgxsA" allowfullscreen></iframe>
-  </div>
-</div>
+        <nav class="main-nav" role="navigation" aria-label="Main">
+          <a href="/index.html">Home</a>
+          <a href="/publications.html">Publications</a>
+          <a href="/blog.html" class="active">Blog</a>
+          <a href="/reviews.html">Reviews</a>
+          <a href="/contact.html">Contact</a>
+          <button id="installBtn" class="install-button" title="Install VON">📱 Install App</button>
+        </nav>
+      </div>
+    </div>
+  </header>
 
-<div class="post">
-  <div class="post-header">A.C. Grayling – How Belief Systems Work</div>
-  <div class="post-content">
-    <p>A.C. Grayling examines the mechanisms behind belief systems — how they emerge, sustain themselves, and shape societies. This discussion challenges the viewer to think critically about the origins and influence of deeply held ideas.</p>
-    <iframe src="https://www.youtube.com/embed/-BThqIwhqxA" allowfullscreen></iframe>
-  </div>
-</div>
+  <!-- Main content -->
+  <main>
+    <section class="page-intro" aria-labelledby="intro-heading">
+      <h2 id="intro-heading" style="margin:0 0 .5rem 0; color:var(--text); font-size:1.1rem;">VON Research — Media & Analysis</h2>
+      <p>
+        <strong>VON Research & Analysis</strong> curates short-form media and commentary that illuminate how belief, trauma, and cognition interact.
+        This space combines careful, citation-minded context with clear commentary — the balance of academic rigor and direct critique.
+        Below are selected talks and analyses; each entry includes a concise tie-in and an embedded source so you can read and watch in one place.
+      </p>
+    </section>
 
-<div class="post">
-  <div class="post-header">The Bible Has No Inherent Meaning</div>
-  <div class="post-content">
-    <p>An exploration of the historical, cultural, and philosophical context behind claims of the Bible’s value. This presentation examines the origins of the text, the impact of interpretation over time, and why its significance depends on the perspective of the reader.</p>
-    <iframe src="https://www.youtube.com/embed/lxPZu8S6F40" allowfullscreen></iframe>
-  </div>
-</div>
+    <section class="posts" aria-live="polite">
+      <!-- Post 1: The Bible Has No Inherent Meaning (open by default) -->
+      <article class="post" id="post-1">
+        <div class="post-header" data-target="p1">
+          <div class="post-title">The Bible Has No Inherent Meaning</div>
+          <div class="post-meta">Historical context, hermeneutics, and why "meaning" is interpretive.</div>
+        </div>
+        <div class="post-body open" id="p1">
+          <p>Short intro — This clip interrogates the assumption that sacred texts possess fixed meaning. VON’s interest is methodological: how translation history, editorial choices, and institutional frameworks construct meaning. The video is a prompt for textual criticism and historical contextualization, not a polemic.</p>
+          <div class="video-wrap">
+            <!-- EMBED ID: lxPZu8S6F40 -->
+            <iframe src="https://www.youtube.com/embed/lxPZu8S6F40" title="The Bible Has No Inherent Meaning" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+        </div>
+      </article>
 
-<script>
-  document.querySelectorAll('.post-header').forEach(header => {
-    header.addEventListener('click', () => {
-      const post = header.parentElement;
-      post.classList.toggle('active');
+      <!-- Post 2: How Belief Systems Work -->
+      <article class="post" id="post-2">
+        <div class="post-header" data-target="p2">
+          <div class="post-title">How Belief Systems Work — A.C. Grayling</div>
+          <div class="post-meta">Philosophy meets cognitive architecture: narratives, incentives, and reinforcement.</div>
+        </div>
+        <div class="post-body" id="p2">
+          <p>Short intro — Grayling articulates the social and philosophical scaffolding that supports belief systems. For VON readers, this video pairs with our research on cognitive reinforcement: it highlights the interplay of argument, identity, and social structure in sustaining convictions.</p>
+          <div class="video-wrap">
+            <!-- EMBED ID: myLT3vpgxsA -->
+            <iframe src="https://www.youtube.com/embed/myLT3vpgxsA" title="How Belief Systems Work — A.C. Grayling" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+        </div>
+      </article>
+
+      <!-- Post 3: Trauma on the Brain -->
+      <article class="post" id="post-3">
+        <div class="post-header" data-target="p3">
+          <div class="post-title">Trauma on the Brain: The Neurobiological Effects of PTSD — Daisy Payton (TEDx)</div>
+          <div class="post-meta">Neurobiology of trauma and its effects on memory, emotion, and belief formation.</div>
+        </div>
+        <div class="post-body" id="p3">
+          <p>Short intro — This talk outlines evidence that severe stress reshapes neural circuits, changing how memory and emotion are processed. VON emphasizes the importance of linking neurobiology with social and cognitive models so that policy and therapy reflect how trauma actually affects thinking.</p>
+          <div class="video-wrap">
+            <!-- EMBED ID: -BThqIwhqxA -->
+            <iframe src="https://www.youtube.com/embed/-BThqIwhqxA" title="Trauma on the Brain — Daisy Payton" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container" style="padding:1rem 1.25rem;">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;">
+        <div>&copy; 2025 VON Research & Analysis</div>
+        <div style="color:var(--muted)"><a href="mailto:alanvonschafer@gmail.com" style="color:var(--muted);text-decoration:none">Contact</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // --- Post toggle logic (open/close) ---
+    document.querySelectorAll('.post-header').forEach(header => {
+      header.addEventListener('click', (e) => {
+        const targetId = header.dataset.target;
+        const content = document.getElementById(targetId);
+        // toggle the clicked one
+        content.classList.toggle('open');
+        // optional: close other posts when opening one (uncomment if desired)
+        // if (content.classList.contains('open')) {
+        //   document.querySelectorAll('.post-body').forEach(b => { if (b.id !== targetId) b.classList.remove('open'); });
+        // }
+        if (content.classList.contains('open')) {
+          // ensure visible
+          setTimeout(() => content.scrollIntoView({behavior:'smooth', block:'start'}), 150);
+        }
+      });
     });
-  });
-</script>
 
+    // --- Install button behaviour (PWA) ---
+    const installBtn = document.getElementById('installBtn');
+    let deferredPrompt = null;
+
+    // Hide button if previously installed/clicked
+    if (localStorage.getItem('v_on_installed') === 'true') {
+      installBtn.classList.add('hidden');
+    }
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      // show button unless already hidden by previous install
+      if (!localStorage.getItem('v_on_installed')) {
+        installBtn.classList.remove('hidden');
+      }
+    });
+
+    // If user clicks install button
+    installBtn.addEventListener('click', async () => {
+      if (deferredPrompt) {
+        try {
+          deferredPrompt.prompt();
+          const choice = await deferredPrompt.userChoice;
+          if (choice && choice.outcome === 'accepted') {
+            // mark installed and hide button
+            localStorage.setItem('v_on_installed', 'true');
+            installBtn.classList.add('hidden');
+          }
+          deferredPrompt = null;
+        } catch (err) {
+          console.warn('Install prompt error', err);
+        }
+      } else {
+        // fallback instructions
+        alert('To install this app:\n\n1. Open your browser menu (⋮)\n2. Select "Add to Home screen" or "Install app"\n3. Confirm\n\nOnce installed, the Install button will disappear.');
+        localStorage.setItem('v_on_installed', 'true');
+        installBtn.classList.add('hidden');
+      }
+    });
+
+    // Optional: detect if user actually installed (some browsers fire appinstalled)
+    window.addEventListener('appinstalled', () => {
+      localStorage.setItem('v_on_installed', 'true');
+      installBtn.classList.add('hidden');
+    });
+
+    // --- Make nav links show active status correctly on other pages if copied ---
+    // (This page already sets Blog active in mark-up; other pages should mark their link active likewise.)
+  </script>
 </body>
 </html>
