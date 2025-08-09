@@ -6,88 +6,106 @@
   <title>Publications | Nexus Analytics</title>
   <meta name="theme-color" content="#1a1a1a">
   <style>
-    body{
-      font-family:system-ui,sans-serif;
-      background:linear-gradient(135deg,#1a1a1a,#2d2d2d,#1a1a1a);
-      color:#f5f5dc;margin:0;padding:2rem;line-height:1.6
+    body {
+      font-family: system-ui, sans-serif;
+      background: linear-gradient(135deg, #1a1a1a, #2d2d2d, #1a1a1a);
+      color: #f5f5dc;
+      margin: 0;
+      padding: 2rem;
+      line-height: 1.6;
     }
-    .site-header{
-      position:fixed;top:1rem;left:1rem;z-index:100;
-      background:rgba(245,245,220,0.1);padding:0.5rem 1rem;
-      border-radius:8px;backdrop-filter:blur(10px)
+    .site-header {
+      position: fixed;
+      top: 1rem;
+      left: 1rem;
+      z-index: 100;
+      background: rgba(245, 245, 220, 0.1);
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      backdrop-filter: blur(10px);
     }
-    .site-header h1{
-      font-size:1rem;margin:0;letter-spacing:0.1em;
-      text-transform:uppercase;font-weight:600
+    .site-header h1 {
+      font-size: 1rem;
+      margin: 0;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 600;
     }
-    h1{
-      text-align:center;margin:3rem 0 2rem;font-size:1.8rem;
-      letter-spacing:0.05em
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 1rem;
+      margin-top: 4rem;
+      background: rgba(245, 245, 220, 0.02);
+      border-bottom: 1px solid rgba(245, 245, 220, 0.06);
     }
-    .publication-list{
-      list-style:none;padding:0;max-width:800px;margin:0 auto
+    nav a {
+      color: #f5f5dc;
+      text-decoration: none;
+      padding: 0.4rem 0.8rem;
+      border-radius: 25px;
+      font-size: 0.85rem;
+      transition: background 0.3s;
+      letter-spacing: -0.02em;
     }
-    .publication-item{
-      background:rgba(245,245,220,0.02);
-      border:1px solid rgba(245,245,220,0.06);
-      border-radius:15px;padding:1.5rem;margin-bottom:1.5rem;
-      transition:all 0.3s ease
+    nav a:hover, nav a.active {
+      background: rgba(245, 245, 220, 0.05);
+      color: #f0e68c;
     }
-    .publication-item:hover{
-      background:rgba(245,245,220,0.05);
-      border-color:rgba(245,245,220,0.15)
+    h1 {
+      text-align: center;
+      margin: 3rem 0 2rem;
+      font-size: 1.8rem;
+      letter-spacing: 0.05em;
     }
-    .pub-title{
-      font-size:1.1rem;font-weight:600;margin-bottom:0.5rem;
-      line-height:1.3
+    .publication-list {
+      list-style: none;
+      padding: 0;
+      max-width: 800px;
+      margin: 0 auto;
     }
-    .pub-desc{
-      font-size:0.9rem;color:rgba(245,245,220,0.85);
-      margin-bottom:1rem;line-height:1.4
+    .publication-item {
+      background: rgba(245, 245, 220, 0.02);
+      border: 1px solid rgba(245, 245, 220, 0.06);
+      border-radius: 15px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      transition: all 0.3s ease;
     }
-    .read-btn{
-      display:inline-flex;align-items:center;gap:0.3rem;
-      padding:0.6rem 1.2rem;
-      background:linear-gradient(135deg,#f5f5dc,#d2b48c);
-      color:#1a1a1a;border-radius:25px;font-weight:bold;
-      text-decoration:none;transition:all 0.3s ease;
-      font-size:0.85rem
+    .publication-item:hover {
+      background: rgba(245, 245, 220, 0.05);
+      border-color: rgba(245, 245, 220, 0.15);
     }
-    .read-btn:hover{
-      background:linear-gradient(135deg,#f0e68c,#daa520);
-      transform:translateY(-2px)
+    .pub-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
     }
-    .modal{
-      display:none;position:fixed;z-index:9999;left:0;top:0;
-      width:100%;height:100%;background:rgba(0,0,0,0.6);
-      justify-content:center;align-items:center
+    .pub-desc {
+      font-size: 0.9rem;
+      color: rgba(245, 245, 220, 0.85);
+      margin-bottom: 1rem;
+      line-height: 1.4;
     }
-    .modal-content{
-      background:rgba(26,26,26,0.95);
-      border:1px solid rgba(245,245,220,0.15);
-      border-radius:15px;padding:2rem;max-width:90%;
-      width:400px;text-align:center;color:#f5f5dc;
-      position:relative;margin:1rem
+    .read-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.6rem 1.2rem;
+      background: linear-gradient(135deg, #f5f5dc, #d2b48c);
+      color: #1a1a1a;
+      border-radius: 25px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-size: 0.85rem;
     }
-    .modal-content h2{margin-bottom:1rem;color:#f5f5dc}
-    .modal-content p{
-      margin-bottom:1.5rem;color:rgba(245,245,220,0.85)
+    .read-btn:hover {
+      background: linear-gradient(135deg, #f0e68c, #daa520);
+      transform: translateY(-2px);
     }
-    .close-btn{
-      padding:0.5rem 1rem;
-      background:linear-gradient(135deg,#f5f5dc,#d2b48c);
-      color:#1a1a1a;border:none;border-radius:8px;
-      font-weight:bold;cursor:pointer
-    }
-    .close-x{
-      position:absolute;top:0.5rem;right:0.5rem;
-      background:rgba(245,245,220,0.8);border:none;
-      color:#1a1a1a;font-size:1.2rem;width:1.8rem;height:1.8rem;
-      border-radius:50%;cursor:pointer;display:flex;
-      align-items:center;justify-content:center;
-      transition:background 0.3s ease;font-weight:bold
-    }
-    .close-x:hover{background:rgba(245,245,220,0.3)}
   </style>
 </head>
 <body>
@@ -95,6 +113,12 @@
 <div class="site-header">
   <h1>Nexus Analytics</h1>
 </div>
+
+<nav>
+  <a href="index.html">Home</a>
+  <a href="publications.html" class="active">Publications</a>
+  <a href="contact.html">Contact</a>
+</nav>
 
 <h1>Publications</h1>
 
@@ -128,49 +152,6 @@
     </a>
   </li>
 </ul>
-
-<div id="welcomeModal" class="modal">
-  <div class="modal-content">
-    <button class="close-x" id="closeX">×</button>
-    <h2>Welcome to Nexus Publications</h2>
-    <p>This section contains a curated selection of works exploring belief, cognition, and the structures that shape human understanding. We invite you to read, reflect, and engage with these ideas.</p>
-    <button class="close-btn" id="closeModal">Enter Library</button>
-  </div>
-</div>
-
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-  const welcomeModal = document.getElementById("welcomeModal");
-  const closeModalBtn = document.getElementById("closeModal");
-  const closeXBtn = document.getElementById("closeX");
-
-  // Show modal if first visit (using in-memory flag instead of localStorage)
-  let hasVisited = true; // Changed to true to disable modal
-  if (!hasVisited) {
-    welcomeModal.style.display = "flex";
-    hasVisited = true;
-  }
-
-  function closeModal() {
-    welcomeModal.style.display = "none";
-  }
-
-  closeModalBtn.addEventListener("click", closeModal);
-  closeXBtn.addEventListener("click", closeModal);
-
-  welcomeModal.addEventListener("click", function(e) {
-    if (e.target === welcomeModal) {
-      closeModal();
-    }
-  });
-
-  document.addEventListener("keydown", function(e) {
-    if (e.key === "Escape" && welcomeModal.style.display === "flex") {
-      closeModal();
-    }
-  });
-});
-</script>
 
 </body>
 </html>
