@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home | Nexus Analytics</title>
+  <meta name="theme-color" content="#1a1a1a">
+  <link rel="manifest" href="manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <style>
+    body{font-family:system-ui,sans-serif;background:linear-gradient(135deg,#1a1a1a,#2d2d2d,#1a1a1a);color:#f5f5dc;margin:0;line-height:1.8}
+    header{padding:2rem 0;text-align:center;border-bottom:1px solid rgba(245,245,220,0.08)}
+    header h1{font-size:2rem;letter-spacing:0.2em;background:linear-gradient(135deg,#f5f5dc,#e6d7a3);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-transform:uppercase;margin:0}
+    nav{display:flex;justify-content:center;gap:0.2rem;padding:1rem;background:rgba(245,245,220,0.02);border-bottom:1px solid rgba(245,245,220,0.06)}
+    nav a{color:#f5f5dc;text-decoration:none;padding:0.2rem 0.4rem;border-radius:15px;font-size:0.7rem;transition:background 0.3s;letter-spacing:-0.04em}
+    nav a:hover,nav a.active{background:rgba(245,245,220,0.05);color:#f0e68c}
+    main{max-width:900px;margin:3rem auto;padding:2rem;background:rgba(245,245,220,0.02);border-radius:20px;border:1px solid rgba(245,245,220,0.06);box-shadow:0 8px 32px rgba(0,0,0,0.3)}
+    h2{color:#f5f5dc;margin-bottom:1rem}
+    p{color:rgba(245,245,220,0.85);margin-bottom:2rem;max-width:75ch}
+    .install-btn{display:none;background:linear-gradient(135deg,#f5f5dc,#d2b48c);color:#1a1a1a;padding:0.75rem 1.5rem;border:none;border-radius:12px;font-weight:600;cursor:pointer;margin:1rem auto;font-size:1rem;transition:all 0.3s ease}
+    .install-btn:hover{background:linear-gradient(135deg,#f0e68c,#daa520);transform:translateY(-1px)}
+    footer{text-align:center;padding:2rem;font-size:0.9rem;color:rgba(245,245,220,0.7);border-top:1px solid rgba(245,245,220,0.08);margin-top:4rem}
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Nexus Analytics</h1>
+</header>
+
+<nav>
+  <a href="index.html" class="active">Home</a>
+  <a href="publications.html">Publications</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+</nav>
+
+<main>
+  <h2>Current Focus</h2>
+  <p>
+    Examining how belief systems interact with trauma response - particularly the psychological mechanisms 
+    that drive religious deconstruction following PTSD experiences.
+  </p>
+  
+  <h2>Recent Work</h2>
+  <p>
+    <strong style="color:#f0e68c;">Latest: The Third Path</strong> - Strategies for independent thought beyond systemic control<br>
+    <strong style="color:#f0e68c;">The 2nd Artifact</strong> - A narrative exploration blending daily experience with the search for truth<br>
+    <strong style="color:#f0e68c;">Deconstruction: The Bible Under Analysis</strong> - A critical examination challenging traditional interpretations<br>
+    <strong style="color:#f0e68c;">The Believing Brain</strong> - How neural mechanisms create and maintain conviction
+  </p>
+  <p>
+    <a href="publications.html" style="color:#f0e68c;text-decoration:underline;">→ Read all publications</a>
+  </p>
+  
+  <button class="install-btn" id="installBtn">📱 Install App</button>
+</main>
+
+<footer>
+&copy; 2025 Nexus Analytics. All rights reserved.
+</footer>
+
+<script>
+let deferredPrompt;
+const installBtn = document.getElementById('installBtn');
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  installBtn.style.display = 'block';
+});
+
+installBtn.addEventListener('click', async () => {
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    const { outcome } = await deferredPrompt.userChoice;
+    deferredPrompt = null;
+    installBtn.style.display = 'none';
+  }
+});
+
+window.addEventListener('appinstalled', () => {
+  installBtn.style.display = 'none';
+});
+</script>
+
+</body>
+</html>
