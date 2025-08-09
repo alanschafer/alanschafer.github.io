@@ -1,24 +1,21 @@
 {
-  "name": "VON | Research & Analysis",
-  "short_name": "VON",
-  "description": "VON is a premier organization dedicated to in-depth research and analysis on emerging geopolitical, technological, and economic trends.",
-  "start_url": "index.html",
+  "name": "Nexus Analytics",
+  "short_name": "Nexus",
+  "description": "Research and analysis platform",
+  "start_url": "/",
   "display": "standalone",
   "background_color": "#1a1a1a",
   "theme_color": "#1a1a1a",
-  "orientation": "portrait",
   "icons": [
     {
       "src": "icon-192.png",
       "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any"
+      "type": "image/png"
     },
     {
-      "src": "icon-512.png",
+      "src": "icon-512.png", 
       "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any"
+      "type": "image/png"
     }
   ]
 }
