@@ -13,75 +13,119 @@
       margin: 0;
       line-height: 1.8;
     }
-    .site-header {
-      position: fixed;
-      top: 1rem;
-      left: 1rem;
-      z-index: 100;
-      background: rgba(245, 245, 220, 0.1);
-      padding: 0.5rem 1rem;
-      border-radius: 8px;
-      backdrop-filter: blur(10px);
+    header {
+      padding: 1.5rem 0;
+      text-align: center;
+      border-bottom: 1px solid rgba(245, 245, 220, 0.08);
     }
-    .site-header h1 {
-      font-size: 1rem;
-      margin: 0;
+    header h1 {
+      font-size: 1.6rem;
       letter-spacing: 0.1em;
+      background: linear-gradient(135deg, #f5f5dc, #e6d7a3);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
       text-transform: uppercase;
-      font-weight: 600;
+      margin: 0;
     }
     nav {
       display: flex;
       justify-content: center;
-      gap: 0.5rem;
+      gap: 0.2rem;
       padding: 1rem;
-      margin-top: 4rem;
       background: rgba(245, 245, 220, 0.02);
       border-bottom: 1px solid rgba(245, 245, 220, 0.06);
     }
     nav a {
       color: #f5f5dc;
       text-decoration: none;
-      padding: 0.4rem 0.8rem;
-      border-radius: 25px;
-      font-size: 0.9rem;
+      padding: 0.2rem 0.4rem;
+      border-radius: 15px;
+      font-size: 0.7rem;
       transition: background 0.3s;
-      font-weight: 500;
+      letter-spacing: -0.04em;
     }
     nav a:hover, nav a.active {
       background: rgba(245, 245, 220, 0.05);
     }
-    main{max-width:900px;margin:3rem auto;padding:2rem;background:rgba(245,245,220,0.02);border-radius:20px;border:1px solid rgba(245,245,220,0.06);box-shadow:0 8px 32px rgba(0,0,0,0.3)}
-    h2{color:#f5f5dc;margin-bottom:1rem;text-align:center}
-    p{color:rgba(245,245,220,0.85);margin-bottom:2rem;text-align:center;max-width:75ch;margin-left:auto;margin-right:auto}
-    form{display:flex;flex-direction:column;gap:1rem;max-width:600px;margin:0 auto}
-    input,textarea{padding:0.75rem 1rem;border-radius:12px;border:1px solid rgba(245,245,220,0.15);background:rgba(245,245,220,0.05);color:#f5f5dc;font-size:1rem}
-    input:focus,textarea:focus{outline:none;border-color:rgba(245,245,220,0.4);background:rgba(245,245,220,0.08)}
-    button{padding:0.75rem 1.5rem;border:none;border-radius:12px;background:linear-gradient(135deg,#f5f5dc,#d2b48c);color:#1a1a1a;font-weight:600;cursor:pointer;align-self:flex-start}
-    button:hover{background:linear-gradient(135deg,#f0e68c,#daa520)}
-    footer{text-align:center;padding:2rem;font-size:0.9rem;color:rgba(245,245,220,0.7);margin-top:4rem;border-top:1px solid rgba(245,245,220,0.08)}
+    main {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 1.5rem;
+      background: rgba(245, 245, 220, 0.02);
+      border-radius: 20px;
+      border: 1px solid rgba(245, 245, 220, 0.06);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+    h2 {
+      color: #f5f5dc;
+      margin-bottom: 1rem;
+      text-align: center;
+      font-size: 1.8rem;
+      letter-spacing: 0.05em;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    input, textarea {
+      padding: 0.75rem 1rem;
+      border-radius: 12px;
+      border: 1px solid rgba(245, 245, 220, 0.15);
+      background: rgba(245, 245, 220, 0.05);
+      color: #f5f5dc;
+      font-size: 1rem;
+    }
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: rgba(245, 245, 220, 0.4);
+      background: rgba(245, 245, 220, 0.08);
+    }
+    button {
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #f5f5dc, #d2b48c);
+      color: #1a1a1a;
+      font-weight: 600;
+      cursor: pointer;
+      align-self: flex-start;
+    }
+    button:hover {
+      background: linear-gradient(135deg, #f0e68c, #daa520);
+    }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      color: rgba(245, 245, 220, 0.7);
+      border-top: 1px solid rgba(245, 245, 220, 0.08);
+      margin-top: 4rem;
+    }
   </style>
 </head>
 <body>
 
-<div class="site-header">
+<header>
   <h1>Nexus Analytics</h1>
-</div>
+</header>
 
 <nav>
   <a href="index.html">Home</a>
   <a href="publications.html">Publications</a>
+  <a href="about.html">About</a>
   <a href="contact.html" class="active">Contact</a>
 </nav>
 
 <main>
   <h2>Contact</h2>
-  <p>Have questions, feedback, or collaboration ideas? We'd love to hear from you.</p>
 
-  <form>
-    <input type="text" placeholder="Your Name" required />
-    <input type="email" placeholder="Your Email" required />
-    <textarea rows="5" placeholder="Your Message" required></textarea>
+  <form id="contact-form">
+    <input type="text" name="name" placeholder="Your Name" required />
+    <input type="email" name="email" placeholder="Your Email" required />
+    <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
     <button type="submit">Send Message</button>
   </form>
 </main>
@@ -89,6 +133,33 @@
 <footer>
   &copy; 2025 Nexus Analytics. All rights reserved.
 </footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+emailjs.init('Kk_Q7lCrVrrOhCBe3');
+
+document.getElementById('contact-form').addEventListener('submit', function(event) {
+  event.preventDefault();
+  
+  const submitBtn = event.target.querySelector('button[type="submit"]');
+  submitBtn.textContent = 'Sending...';
+  submitBtn.disabled = true;
+  
+  emailjs.sendForm('service_knf4wbr', 'template_wp08fqm', this)
+    .then(() => {
+      alert('Message sent successfully!');
+      this.reset();
+    })
+    .catch((error) => {
+      console.error('Send failed:', error);
+      alert('Failed to send message. Please try again.');
+    })
+    .finally(() => {
+      submitBtn.textContent = 'Send Message';
+      submitBtn.disabled = false;
+    });
+});
+</script>
 
 </body>
 </html>
