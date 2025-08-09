@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Home | Nexus Analytics</title>
   <meta name="theme-color" content="#1a1a1a">
+  <link rel="manifest" href="manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <style>
     body{
       font-family:system-ui,sans-serif;
@@ -77,11 +80,37 @@
     Explore our latest publications and insights.
     Reach out through our contact page — we'd love to hear from you.
   </p>
+  
+  <button class="install-btn" id="installBtn">📱 Install App</button>
 </main>
 
 <footer>
   &copy; 2025 Nexus Analytics. All rights reserved.
 </footer>
+
+<script>
+let deferredPrompt;
+const installBtn = document.getElementById('installBtn');
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  installBtn.style.display = 'block';
+});
+
+installBtn.addEventListener('click', async () => {
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    const { outcome } = await deferredPrompt.userChoice;
+    deferredPrompt = null;
+    installBtn.style.display = 'none';
+  }
+});
+
+window.addEventListener('appinstalled', () => {
+  installBtn.style.display = 'none';
+});
+</script>
 
 </body>
 </html>
